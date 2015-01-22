@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Quantum Leap</title>
+	</head>
+	<body onload = "run();">
+	
+		<div id = playArea>
+			<!-- Main HTML -->
+			<div id = titleScreen class = main></div>
+			<div id = titleBox class = main>
+				<h1 id = quantumTitle >Quantum Leap</h1>
+			</div>
+			<div id = highScoreBox class = main>
+				<p id = highScore>High Score: 0 points</p>
+			</div>
+			<div id = buttonBox class = main>
+				<input id = playButton type = "button" value = "Play!" onclick = "game();"></input>
+				<input id = infoButton type = "button" value = "Instructions" onclick = "info();"></input>
+			</div>
+			
+			<!-- Game HTML -->
+			<input id = leftButton class = game type = "button" value = "left" onmousedown = "moveLeft();" onmouseup = "stop();"></input>
+			<input id = rightButton class = game type = "button" value = "right" onmousedown = "moveRight();" onmouseup = "stop();"></input>
+			<input id = quitButton class = game type = "button" value = "quit" onclick = "gameOver();" ></input>
+			<div id = displayBox class = game>
+				<div id = scoreBox class = displays>
+					<p id = scoreDisplay></p>
+				</div>
+				<div id = photonBox class = displays>
+					<p id = photonDisplay></p>
+				</div>
+				<div id = levelBox class = displays>
+					<p id = levelDisplay></p>
+				</div>
+			</div>
+			
+			<!-- Info HTML -->
+			
+			<div id = infoBox class = info>
+			
+				<h1 id = "infoTitle" align = "center">Instructions</h1>
+				<div id = "one">
+					<p>
+					In Quantum Leap, you control an electron in a hydrogen atom. 
+					As an electron, you will have to deal with many dangers threatening
+					to separate you from your friend the proton, forever!
+					</p>
+					
+					<p>
+					These dangers come in the form of photons: Tricky little bundles of
+					electromagnetic energy travelling at the speed of light. In fact, some
+					photons are perceived as visible light. However some are invisible
+					infrared or ultraviolet rays. You'll have to deal with both visible and
+					invisible rays.
+					</p>
+				</div>
+				<div id = "two">
+					<p>
+					Photons come in specific bundles of energy called Quanta. The amount of
+					energy in the photon determines if it is infrared, ultraviolet, or its
+					colour, if visible.
+					</p>
+					
+					<p>
+					As an electron you can only have certain quantities of energy. If you gain
+					the right amount of energy, you can rise to another energy level. If you
+					lose a specific amount of energy, you will fall to a certain energy level.
+					If a photon hits it will transfer its energy to you only if it has the right
+					amount of energy to change your level, otherwise nothing will happen and the
+					photon will pass by you. The exception is if the photon has enough energy to
+					completely remove you from the atom, in this case you will be knocked and it
+					will be game over!
+					</p>
+				</div>
+				<div id = "three">
+					<p>
+					All of the infrared photons have the <strong><font color = "#ffffff">least energy,</font></strong> but some of them might
+					have more than others. For your convenience, infrared photons will be coloured white.<br>
+					<br>
+					For visible light, <strong><font color = "#ff0000">red</font></strong> photons have least energy, followed by yellow, green, 
+					<strong><font color = "#00effff">cyan</font></strong>, <strong><font color = "#2800ff">blue</font></strong>, and violet has the most energy.<br>
+					<br>
+					Ultraviolet has the <strong><font color = "#000000">most energy,</font></strong> but some may have more energy that others. 
+					For your convenience, ultraviolet photons will be coloured black.<br>  
+					</p>
+					
+					<p>Try and stay on the atom as long as possible! You earn more points by being on higher 
+					levels. But it is easier to stay on the atom when you are at lower levels. You can drop 
+					levels by being hit by a photon from underneath you. This photon is not actually there, 
+					and will disappear if you don't hit. If you do hit it you might drop to a lower level 
+					if it has the right energy, and the photon will be created and continue on its way. Good Luck!
+					</p>
+				</div>
+				<div id = "four">
+					<h3>Guide to photon colours and leaps</h2>
+					<h4>First Level</h4>
+					<ul>
+						<li>You start on this level</li>
+						<li>Most <font color = "#000000"><strong>ultraviolet</strong></font> photons will make you leap to the other levels</li>
+						<li>There are exceptions. Some may do nothing. Some can knock you off the atom</li>
+						<li><font color = "#ffffff"><strong>Infrared</strong></font> and visible photons will do nothing</li>
+					</ul>
+				</div>
+				<div id = "five"
+					<h4>Second Level</h4>
+					<ul>
+						<li>From the top <font color = "#000000"><strong>ultraviolet</strong></font> will knock you off</li>
+						<li>From the bottom some <font color = "#000000"><strong>ultraviolet</strong></font> will drop you to level 1</li>
+						<li><font color = "#ffffff"><strong>Infrared</strong></font> will do nothing</li>
+						<li><font color = "#ff0000"><strong>Red</strong></font> photons will raise you to level 3 </li>
+						<li><font color = "#00effff"><strong>Cyan</strong></font> photons will raise you to level 4 </li>
+						<li><font color = "#2800ff"><strong>Blue</strong></font> photons will raise you to level 5 </li>
+					</ul>
+				</div>
+				<div id = "six">
+					<h4>Third to Fifth Level</h4>
+					<ul>
+						<li><font color = "#000000"><strong>Ultraviolet</strong></font> and visible photons will knock you off, but some ultraviolet can drop you to level 1 from the bottom</li>
+						<li><font color = "#ffffff"><strong>Infrared</strong></font> can make you jump, do nothing, or knock you off</li>
+						<li>The same photon that can make you jump from level to to a specific level can drop the electron to its respective level when hit from the bottom</li>
+					</ul>
+				</div>
+			</div>
+			
+			
+			<input id = "forwardButton" class = "info" type = "button" value = ">" onclick = "turnFoward();" ></input>
+			<input id = "backwardButton" class = "info" type = "button" value = "<" onclick = "turnBackward();" ></input>
+			<input id = "mainButton" class = "info" type = "button" value = "Return to Main Menu" onclick = "main();" ></input>
+			
+		</div>
+	</body>
+</html>
+
+<style>
+body{
+	background-color: #000000;
+}
+#playArea{
+	position:absolute;
+	width: 800px;
+	height: 600px;
+	background-color:#88aaff;
+}
+
+p{
+		font-size:12px;
+}
+li{
+		font-size:12px;
+}
+input{
+		border: 2px solid;
+		border-radius: 5px;
+		background-color:#bbaa22;
+}
+.info{
+		position: absolute;
+		display: none;
+}
+#one{display:none;}
+#two{display:none;}
+#three{display:none;}
+#four{display:none;}
+#five{display:none;}
+#six{display:none;}
+
+
+#infoBox{
+		height: 330px;
+		width: 380px;
+		margin-Top:95px;
+		margin-Left:200px;
+		background-color:#46688a;
+		border: 10px solid #46688a;
+		border-radius:10px;
+}
+
+
+#mainButton{
+		
+		height:30px;
+		width:200px;
+		margin-Top:550px;
+		margin-Left:300px;
+		
+}
+
+#backwardButton{
+		height:25px;
+		width:25px;
+		margin-Top:450px;
+		margin-Left:370px;
+}
+#forwardButton{
+		height:25px;
+		width:25px;
+		margin-Top:450px;
+		margin-Left:405px;
+}
+
+
+.main{
+		position: absolute;
+		display: none;
+}
+#titleScreen{
+		height:500px;
+        width:500px;
+		margin-Left:150px;
+		margin-Top:50px;
+		background-color:#344042;
+}
+#titleBox{
+		height:100px;
+        width:400px;
+		margin-Left:200px;
+		margin-Top:55px;
+		background-color:#233445;
+		
+		text-align:center;
+		color:#bbaa22;
+}
+#highScoreBox{
+		height:50px;
+        width:300px;
+		margin-Left:250px;
+		margin-Top:175px;
+		background-color:#233445;
+		
+		text-align:center;
+		color:#bbaa22;
+}
+#highScore{
+	font-size:16px;
+}
+#buttonBox{
+		height:300px;
+        width:400px;
+		margin-Left:200px;
+		margin-Top:245px;
+		background-color:#233445;
+}
+#playButton{
+		height:100px;
+        width:380px;
+		margin-Left:10px;
+		margin-Top:45px;
+}
+#infoButton{
+		height:100px;
+        width:380px;
+		margin-Left:10px;
+		margin-Top:10px;
+}
+
+
+
+.game
+{
+        position: absolute;
+		display: none;
+}
+#leftButton{
+		height:80px;
+        width:80px;
+		margin-Left:405px;
+		margin-Top:515px;
+}
+#rightButton{
+		height:80px;
+        width:80px;
+		margin-Left:490px;
+		margin-Top:515px;
+}
+#quitButton{
+		height:80px;
+        width:190px;
+		margin-Left:605px;
+		margin-Top:515px;
+}
+#displayBox{
+	margin-Top:520px;
+	
+}
+
+.displays{
+		position:absolute;
+		background-color:#ffffff;
+		text-align:center;
+		
+		
+		border: 2px solid;
+		border-radius: 5px;
+}
+#photonBox{
+		height:50px;
+        width:90px;
+		margin-Left:205px;
+		margin-Top:5px;
+}
+#levelBox{
+		height:50px;
+        width:90px;
+		margin-Left:305px;
+		margin-Top:5px;
+}
+#scoreBox
+{
+        height:50px;
+        width:190px;
+		margin-Left:5px;
+		margin-Top:5px;
+		
+		
+}
+#scoreDisplay{
+	margin-Top: 5px;
+	font-size:16px;
+}
+#photonDisplay{
+	margin-Top: 5px;
+	font-size:16px;
+}
+#levelDisplay{
+	margin-Top: 5px;
+	font-size:16px;
+}
+</style>
+<script>
+
+var fps = 40;
+var period = 1/fps;
+
+var ele;
+var elec;
+
+var score = 0;
+var highScore = 0;
+
+var lost = 0;
+
+var numPho = 100;
+var pho = [];
+var numShells = 5;
+var shells = [];
+
+var numPhotons;
+
+var moveDiv = function(elem,x,y){
+	elem.style.marginLeft = x + "px";
+	elem.style.marginTop = y + "px";
+}
+var displayDiv = function(elem){
+	elem.style.display = "block";
+}
+var hideDiv = function(elem){
+	elem.style.display = "none";
+}
+
+
+
+/*
+Moves elements based on the position of the top left corner
+
+String elem = element's id;
+Integer x = marginLeft;
+Integer y = marginTop;
+*/
+var moveElement = function(elem,x,y){
+	document.getElementById(elem).style.marginLeft = x + "px";
+	document.getElementById(elem).style.marginTop = y + "px";
+}
+
+var displayElement = function(elem){
+	document.getElementById(elem).style.display = "block";
+}
+var hideElement = function(elem){
+	document.getElementById(elem).style.display = "none";
+}
+
+
+
+var displayGame = function(){
+	displayElement("leftButton");
+	displayElement("rightButton");
+	displayElement("quitButton");
+	displayElement("displayBox");
+	
+	/*
+	for(var i = 0; i < pho.length; i++){
+		displayDiv(pho[i]);
+	}
+	*/
+	for(var i = 0; i < shells.length; i++){
+		displayDiv(shells[i]);
+	}
+	displayDiv(ele);
+}
+var displayMain = function(){
+	displayElement("titleScreen");
+	displayElement("titleBox");
+	displayElement("highScoreBox");
+	displayElement("buttonBox");
+}
+var displayInfo = function(){
+	displayElement("infoBox");
+	displayElement("forwardButton");
+	displayElement("backwardButton");
+	displayElement("mainButton");
+	displayElement("one");
+	hideElement("backwardButton");
+}
+
+
+
+
+var hideGame = function(){
+	hideElement("leftButton");
+	hideElement("rightButton");
+	hideElement("quitButton");
+	hideElement("displayBox");
+	
+	for(var i = 0; i < pho.length; i++){
+		hideDiv(pho[i]);
+	}
+	for(var i = 0; i < shells.length; i++){
+		hideDiv(shells[i]);
+	}
+	hideDiv(ele);
+}
+var hideMain = function(){
+	hideElement("titleScreen");
+	hideElement("titleBox");
+	hideElement("highScoreBox");
+	hideElement("buttonBox");
+}
+
+var currentPage = 1;
+
+var hideAllBook = function(){
+	hideElement("one");
+	hideElement("two");
+	hideElement("three");
+	hideElement("four");
+	hideElement("five");
+	hideElement("six");
+}
+
+var hideInfo = function(){
+	currentPage = 1;
+	hideAllBook();
+	hideElement("infoBox");
+	hideElement("forwardButton");
+	hideElement("backwardButton");
+	hideElement("mainButton");
+}
+
+
+
+
+var convertPage = function(num){
+	switch(num){
+		case 0: 
+			return "none";
+		case 1:
+			return "one";
+		case 2:
+			return "two";
+		case 3:
+			return "three";
+		case 4:
+			return "four";
+		case 5:
+			return "five";
+		case 6:
+			return "six";
+		default:
+			return "none";
+	}
+}
+
+
+var turnFoward = function(){
+	hideElement(convertPage(currentPage));
+	displayElement("backwardButton");
+	currentPage++;
+	if(currentPage === 6){
+		hideElement("forwardButton");
+	}
+	displayElement(convertPage(currentPage));
+}
+
+var turnBackward = function(){
+	hideElement(convertPage(currentPage));
+	displayElement("forwardButton");
+	currentPage--;
+	if(currentPage === 1){
+		hideElement("backwardButton");
+	}
+	displayElement(convertPage(currentPage));
+}
+
+
+/*
+Creates a div positioned absolutely with parameter
+
+id = the div
+w = width
+h = height
+x = marginLeft
+y = marginTop
+col = color of div in #HEXDEC
+*/
+var createDiv = function(id,w,h,x,y,col){
+	document.body.appendChild(id);
+	id.style.position = "absolute";
+	id.style.width = w + "px";
+	id.style.height = h + "px";
+	id.style.marginLeft = x + "px";
+	id.style.marginTop = y + "px";
+	id.style.backgroundColor = col;
+}
+
+var convertLevel = function(lvl){
+	if(lvl === 0){
+		return 0;
+	}
+	else{
+		return 600 - 100*lvl;
+	}
+}
+
+var updateScore = function(sc){
+	score = sc;
+	document.getElementById("scoreDisplay").innerHTML = "Score <br>" + Math.floor(score) + " points";
+	document.getElementById("photonDisplay").innerHTML = "Photons <br>" + numPhotons;
+	document.getElementById("levelDisplay").innerHTML = "Energy Level <br>" + elec.level;
+}
+var updateHighScore = function(sc){
+	if(sc > highScore){
+		highScore = sc;
+	}
+	document.getElementById("highScore").innerHTML = "High Score: " + Math.floor(highScore) + " points";
+}
+var gameOver = function(){
+	lost = 1;
+	updateHighScore(score);
+}
+
+
+var wavelengths = [[0,-91, -365, -821, -1459, -2280],[91, 0, 122, 103, 97, 95],		[365, -122, 0, 657, 486, 434],		[821, -103, -657, 0, 1876, 1282],		[1459, -97, -486, -1876, 0, 4053],		[2280, -95, -434, -1282, -4053, 0]]
+
+/*
+	electron object
+*/
+var electron = function(div,lvl,pos){
+	this.element = div;
+	this.level = lvl;
+	this.position = pos;
+	
+	this.move = function(){
+		moveDiv(this.element, this.position, convertLevel(this.level));
+	}
+	this.collide = function(ph){
+		//if wavelength shorter than needed to completely remove e- then eject e-
+		if(ph.nFinal > ph.nInitial || ph.nFinal === 0){
+			// if wave is less than the escape wave, energy is greater
+			if(ph.getWavelength() < wavelengths[this.level][0]){
+				this.level = 0; 
+				this.move();
+				if(ph.direction === 1){
+					ph.generate();
+				}
+				gameOver();
+			}
+		}
+		if(ph.nInitial === this.level){
+				this.level = ph.nFinal;
+				this.move();
+				if(this.level === 0){
+					gameOver();
+				}
+				
+				if(ph.direction === 1){
+					ph.generate();
+				}
+				else{
+					ph.nFinal = ph.nInitial;
+				}
+				//level change 
+		}
+		
+	}
+}
+
+
+
+
+
+
+
+// an n level of zero means infinitely far from atom
+var photon = function(div,ni,nf, x, y, dir){
+	
+	this.element = div;
+	this.nInitial = ni;
+	this.nFinal = nf;
+	this.xPos = x;
+	this.yPos = y;
+	this.direction = dir;
+	
+	
+	
+	
+	this.move = function(){
+			
+		moveDiv(this.element, this.xPos, this.yPos);
+
+	}
+	
+	this.isHit = function(el){
+		if(this.xPos + 10 > el.position && this.xPos < el.position + 10 && this.yPos === convertLevel(el.level)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	this.isOut = function(el){
+		if(this.yPos > 500){
+			return true;
+		}//end if
+		else if(this.direction === -1 && this.yPos < convertLevel(el.level) && this.nInitial != this.nFinal || this.yPos < 0){ 
+			return true;
+		}//end if
+		return false
+	}
+	
+	this.getWavelength = function(){
+		var wave = wavelengths[this.nInitial][this.nFinal];
+		if(wave === 0){
+			return null;
+		}
+		else if (wave < 0){
+			return -1*wave;
+		}
+		else{
+			return wave;
+		}
+	}
+	
+	this.getColor = function(){
+		if(this.getWavelength() < 380){
+			return "#000000";
+		}
+		else if (this.getWavelength() > 780){
+			return "#FFFFFF";
+		}
+		else{
+			switch (this.getWavelength()){
+				case 434:
+					return "#2800ff";
+				case 486:
+					return "#00efff";
+				case 657:
+					return "#ff0000";
+				case 410:
+					return "#7e00db";
+				default:
+					return "#888888";
+			}//end switch
+		}//end else
+	}//end function
+	this.changeColor = function(){
+		this.element.style.backgroundColor = this.getColor();
+	}
+	this.generate = function(){
+		do{
+		this.nInitial = Math.floor((Math.random() * numShells) + 1);
+		this.nFinal = Math.floor((Math.random() * (numShells + 1)) + 0);
+		}while(this.nInitial === this.nFinal || (this.nInitial === 1 && this.nFinal === 0))
+		
+		this.xPos = Math.floor((Math.random() * 790) + 0);
+		
+		
+		if(this.nInitial > this.nFinal && this.nFinal != 0){
+			//drop e-
+			this.yPos = 500;
+			this.direction = -1;
+		}
+		else{
+			this.yPos = 0;
+			this.direction = 1;
+		}
+		
+		this.move();
+		this.changeColor();
+	}
+}
+
+
+
+
+var mov;
+function moveLeft()
+{
+        clearTimeout(mov);
+        if(!lost)
+        {
+				elec.position -=numShells;
+				if(elec.position < 0){
+					elec.position = 800 - 10;
+				}
+				elec.move();
+                mov = setTimeout(moveLeft,1000/fps/2);
+        }
+}
+function moveRight()
+{
+        clearTimeout(mov);
+        if(!lost)
+        {
+				elec.position += numShells;
+				if(elec.position > 800 - 10){
+					elec.position = 0;
+				}
+				elec.move();
+                mov = setTimeout(moveRight,1000/fps/2);
+        }
+}
+
+window.addEventListener("keydown", checkKeyPressed, false);
+window.addEventListener("keyup", checkKeyReleased, false);
+ 
+function checkKeyPressed(e) {
+    if (e.keyCode == "65") {
+        moveLeft();
+    }
+	else if (e.keyCode == "68") {
+        moveRight();
+    }
+}
+
+function stop()
+{
+        clearTimeout(mov);
+}
+
+function checkKeyReleased(e) {
+    stop();
+}
+
+
+
+var run = function(){
+	
+	
+	
+	for(var i = 1; i <= numShells; i++)
+	{
+		shells[i] = document.createElement("div");
+		createDiv(shells[i],800,10,0,convertLevel(i),"#BADA55");
+	}
+	shells[0] = document.createElement("div");
+	createDiv(shells[0],800,10,0,0,"#bbbbbb");
+	
+	for(var i = 0; i < numPho ; i++){
+		pho[i] = document.createElement("div");
+		createDiv(pho[i],10,10,-200,0,"#FFFFFF");
+	}
+	
+	ele = document.createElement("div");
+	createDiv(ele,10,10,400,500,"#777777");
+	
+	main();
+}
+
+
+
+
+var info = function(){
+	hideGame();
+	hideMain();
+	displayInfo();
+}
+
+var main = function(){
+	
+	hideGame();
+	hideInfo();
+	displayMain();
+
+}
+
+var game = function(){
+	
+	score = 0;
+	lost = 0;
+	hideMain();
+	hideInfo();
+	displayGame();
+	
+
+	
+	elec = new electron(ele,1,400)
+	elec.move();
+	
+	var photons = [];
+	
+	for(var i = 0; i < numPho ; i++){
+		photons[i] = new photon(pho[i],3,5, 200 + 100*i, 150, 1);
+		photons[i].generate();
+		hideDiv(photons[i].element);
+	}
+	
+	
+	
+	
+	numPhotons = 5;
+	
+	/*
+		Animation
+	*/
+	var frame = function()
+	{
+		clearTimeout(animate);
+		
+		
+		if(numPhotons < 100){
+			var f = Math.sqrt(score/10);
+			numPhotons = Math.floor(f) + 5;
+		}
+		else{
+			numPhotons = 100;
+		}
+		
+		
+		
+		for(var i = 0; i < numPhotons ; i++){
+			photons[i].yPos += photons[i].direction*1;
+			var exists = true;
+			if(photons[i].isHit(elec)){
+				elec.collide(photons[i]);
+			}
+			else if(photons[i].isOut(elec)){
+				photons[i].generate();
+			}
+			photons[i].move();
+			displayDiv(photons[i].element)
+		}
+		
+		updateScore(score + (1/5 * elec.level*elec.level/fps * numPhotons));
+		
+		
+		if(lost){
+			main();
+		}
+		else
+		{
+			animate = setTimeout(frame,period);
+		}
+	}
+	animate = setTimeout(frame,1000/fps);
+}
+</script>
